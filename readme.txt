@@ -1,0 +1,5 @@
+The IPaymentProcessor interface defines the behavior of payment processors that will be used for payment processing. The CreditCardPaymentProcessor, PayPalPaymentProcessor, and BankTransferPaymentProcessor classes implement the behaviors in the IPaymentProcessor interface and form different links in the payment processing chain.
+
+Each payment processor checks whether it can handle the payment based on the payment amount. If the payment amount is within its limit, it processes the payment. If the amount exceeds its limit, the payment is passed on to the next link in the payment processing chain. The last link in the chain, the BankTransferPaymentProcessor, can always process the payment.
+
+The Main method of the program demonstrates how the payment processing chain is created. Each payment processor in the chain determines the next processor using the SetNextProcessor method. Then, the creditCardProcessor, the first link in the chain, calls the ProcessPayment method to process the payment. This triggers the other links in the chain, with each processor checking the payment and forwarding it to the next link in the chain when necessary.
